@@ -10,12 +10,45 @@ exports.getFoods = async (req, res) => {
   }
 };
 
+exports.getFood = async (req, res) => {
+  const { idOrName } = req.params;
+  const food = await foodModel.find({ name: idOrName });
+
+  try {
+    res.send(food);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+
 exports.postFood = async (req, res) => {
   const food = new foodModel(req.body);
 
   try {
     await food.save();
     res.send(food);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+
+exports.patchFood = async (req, res) => {
+  try {
+    const { idOrName } = req.params;
+    const { id, name, calories, img } = req.body;
+    await foodModel.update({ name: idOrName }, { $set: { name: name } });
+    const afterFood = await foodModel.find({ name: name });
+    res.send(afterFood);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+
+exports.deleteFood = async (req, res) => {
+  try {
+    const { idOrName } = req.params;
+    await foodModel.remove({ name: idOrName });
+    res.send("delete success");
   } catch (err) {
     res.status(500).send(err);
   }
