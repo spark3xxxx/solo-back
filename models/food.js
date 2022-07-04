@@ -7,15 +7,25 @@ const FoodSchema = new mongoose.Schema({
     trim: true,
     lowercase: true,
   },
+  distributor: String,
+  price: String,
+  evaluation: String,
+  description: String,
+  category: String,
+
+  url: String,
+  img: {
+    type: String,
+  },
+  img2: {
+    type: String,
+  },
   calories: {
     type: Number,
     default: 0,
     validate(value) {
       if (value < 0) throw new Error("マイナス");
     },
-  },
-  img: {
-    type: String,
   },
 });
 

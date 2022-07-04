@@ -28,12 +28,12 @@ const foodController = require("../controllers/food");
 
 app.get("/foods", foodController.getFoods);
 
-app.get("/food/:idOrName", foodController.getFood);
+app.get("/foods/:idOrName", foodController.getFood);
 
-app.patch("/food/:idOrName", foodController.patchFood);
+app.patch("/foods/:idOrName", foodController.patchFood);
 
-app.delete("/food/:idOrName", foodController.deleteFood);
+app.delete("/foods/:idOrName", foodController.deleteFood);
 
-app.post("/food", foodController.postFood);
+app.post("/foods", foodController.postFood);
 
 module.exports = app;

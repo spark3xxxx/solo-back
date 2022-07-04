@@ -35,8 +35,13 @@ exports.postFood = async (req, res) => {
 exports.patchFood = async (req, res) => {
   try {
     const { idOrName } = req.params;
-    const { id, name, calories, img } = req.body;
-    await foodModel.update({ name: idOrName }, { $set: { name: name } });
+    console.log(req.body);
+    console.log(idOrName);
+    const { id, name, distributor, img } = req.body;
+    await foodModel.updateOne(
+      { name: idOrName },
+      { $set: { distributor: distributor } }
+    );
     const afterFood = await foodModel.find({ name: name });
     res.send(afterFood);
   } catch (err) {
