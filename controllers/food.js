@@ -33,6 +33,7 @@ exports.postFood = async (req, res) => {
 };
 
 exports.patchFood = async (req, res) => {
+  //constをtryの外に出したら動いた
   const { idOrName } = req.params;
   try {
     const {
@@ -93,9 +94,9 @@ exports.patchFood = async (req, res) => {
 };
 
 exports.deleteFood = async (req, res) => {
+  const { idOrName } = req.params;
   try {
-    const { idOrName } = req.params;
-    await foodModel.remove({ name: idOrName });
+    await foodModel.remove({ _id: idOrName });
     res.send("delete success");
   } catch (err) {
     res.status(500).send(err);
