@@ -35,12 +35,54 @@ exports.postFood = async (req, res) => {
 exports.patchFood = async (req, res) => {
   try {
     const { idOrName } = req.params;
-    console.log(req.body);
-    console.log(idOrName);
-    const { id, name, distributor, img } = req.body;
+    const {
+      _id,
+      name,
+      category,
+      url,
+      evaluation,
+      distributor,
+      price,
+      img,
+      material,
+      nutrition,
+      description,
+    } = req.body;
+
+    // foodModel.findById(idOrName).then((product) => {
+    //   product.name = name;
+    //   product.category = category;
+    //   product.url = url;
+    //   product.evaluation = evaluation;
+    //   product.disdributor = distributor;
+    //   product.price = price;
+    //   product.img = img;
+    //   product.material = material;
+    //   product.nutrition = nutrition;
+    //   product.description = description;
+    //   return product.save();
+    // });
+
+    // const { idOrName } = req.params;
+    // const { id, name, distributor, img } = req.body;
+    console.log(distributor);
     await foodModel.updateOne(
-      { name: idOrName },
-      { $set: { distributor: distributor } }
+      { id: idOrName },
+      {
+        $set: {
+          name: name,
+          category: category,
+          url: url,
+          evaluation: evaluation,
+          distributor: distributor,
+          price,
+          price,
+          img: img,
+          material: material,
+          nutrition: nutrition,
+          description: description,
+        },
+      }
     );
     const afterFood = await foodModel.find({ name: name });
     res.send(afterFood);

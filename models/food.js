@@ -10,9 +10,10 @@ const FoodSchema = new mongoose.Schema({
   distributor: String,
   price: String,
   evaluation: String,
+  material: String,
+  nutrition: String,
   description: String,
   category: String,
-
   url: String,
   img: {
     type: String,
