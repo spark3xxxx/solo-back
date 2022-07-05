@@ -35,6 +35,8 @@ exports.postFood = async (req, res) => {
 exports.patchFood = async (req, res) => {
   try {
     const { idOrName } = req.params;
+    console.log(idOrName);
+    console.log(req.body.name);
     const {
       _id,
       name,
@@ -65,7 +67,7 @@ exports.patchFood = async (req, res) => {
 
     // const { idOrName } = req.params;
     // const { id, name, distributor, img } = req.body;
-    console.log(distributor);
+    console.log(name, category, url, evaluation);
     await foodModel.updateOne(
       { id: idOrName },
       {
